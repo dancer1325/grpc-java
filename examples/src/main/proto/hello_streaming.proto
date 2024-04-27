@@ -22,7 +22,7 @@ package manualflowcontrol;
 
 // The greeting service definition.
 service StreamingGreeter {
-  // Streams a many greetings
+  // Streams a many greetings     -- bi-directional streaming RPC --
   rpc SayHelloStreaming (stream HelloRequest) returns (stream HelloReply) {}
 }
 

@@ -22,9 +22,9 @@ package helloworld;
 
 // The greeting service definition.
 service Greeter {
-  // Sends a greeting
+  // Sends a greeting     -- unary RPC --
   rpc SayHello (HelloRequest) returns (HelloReply) {}
-  // Sends another greeting. New method.
+  // Sends another greeting. New method.      -- unary RPC --
   rpc SayHelloAgain (HelloRequest) returns (HelloReply) {}
 }
 
