@@ -1,27 +1,32 @@
 Building gRPC-Java
 ==================
 
-Building is only necessary if you are making changes to gRPC-Java or testing/using a non-released
- version (e.g. master HEAD) of gRPC-Java library.
-
-Building requires JDK 8, as our tests use TLS.
-
-grpc-java has a C++ code generation plugin for protoc. Since many Java
-developers don't have C compilers installed and don't need to run or modify the
-codegen, the build can skip it. To skip, create the file
-`<project-root>/gradle.properties` and add `skipCodegen=true`.
-
-Some parts of grpc-java depend on Android. Since many Java developers don't have
-the Android SDK installed and don't need to run or modify the Android
-components, the build can skip it. To skip, create the file
-`<project-root>/gradle.properties` and add `skipAndroid=true`.
-Otherwise, create the file `<project-root>/gradle.properties` and add `android.useAndroidX=true`.
-
-Then, to build, run:
+* Only necessary if
+  * you are making changes to gRPC-Java OR
+  * testing/using a non-released version of `grpc-java`
+* Prerequirements
+  * [JDK8](https://jdk.java.net/)
+    * Reason: tests use TLS
+  * C compilers OR skip the build
+    * Reason: grpc-java has a C++ code generation plugin for protoc
+    * skip the build
+      * uses
+        * NOT need to run OR modify the codegen
+      * ways
+        * create the file `<project-root>/gradle.properties` and add `skipCodegen=true`
+  * Android SDK OR skip the build
+    * Reason: grpc-java's parts depend on Android
+    * skip the build
+      * uses
+        * NOT need to run OR modify the Android components
+      * ways
+        * create the file `<project-root>/gradle.properties` and add 
+          * `skipAndroid=true` OR
+          * `android.useAndroidX=true`
+* How to run?
 ```
 $ ./gradlew build
 ```
-
 To install the artifacts to your Maven local repository for use in your own
 project, run:
 ```
@@ -29,14 +34,15 @@ $ ./gradlew publishToMavenLocal
 ```
 
 ### Notes for IntelliJ
-Building in IntelliJ works best when you import the project as a Gradle project and delegate IDE
-build/run actions to Gradle.
-
-You can find this setting at:
+* Recommendation
+  * import the project as a Gradle project &
+  * delegate IDE build/run actions to Gradle
 ```Settings -> Build, Execution, Deployment
       -> Build Tools -> Gradle -> Runner
       -> Delegate IDE build/run actions to gradle.
 ```
+
+TODO: Next to check
 
 How to Build Code Generation Plugin
 -----------------------------------
