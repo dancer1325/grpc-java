@@ -34,7 +34,8 @@ public class HelloWorldServer {
 
   private void start() throws IOException {
     /* The port on which the server should run */
-    int port = 50051;
+    //int port = 50051;       -- on use --
+    int port = 50052;
     server = Grpc.newServerBuilderForPort(port, InsecureServerCredentials.create())
         .addService(new GreeterImpl())
         .build()

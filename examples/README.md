@@ -1,13 +1,49 @@
 gRPC Examples
 ==============================================
 
-The examples require `grpc-java` to already be built. You are strongly encouraged
-to check out a git release tag, since there will already be a build of gRPC
-available. Otherwise you must follow [COMPILING](../COMPILING.md).
+## Prerequisites
+* [JDK7+](https://jdk.java.net/)
+* `grpc-java` 
+  * ways
+    * check out a git release tag -- which contains a build of gRPC --
+    * follow [COMPILING](../COMPILING.md)
 
-You may want to read through the
-[Quick Start](https://grpc.io/docs/languages/java/quickstart)
-before trying out the examples.
+
+## <a name="to-build-the-examples"></a> Ways to build & run the examples
+
+### Via Gradle
+* From grpc-java/examples directory
+  * ` $ ./gradlew installDist`
+    * Creates the scripts `hello-world-server`, `hello-world-client`, `route-guide-server`, `route-guide-client`, etc. in the `build/install/examples/bin/` directory that run the examples.
+  * `$ ./build/install/examples/bin/*-server` -- _Example:_ `$ ./build/install/examples/bin/hello-world-server` 
+    * server -- must running before -- the client
+  *  (in a different terminal) `$ ./build/install/examples/bin/*-client` -- _Example:_ `$ ./build/install/examples/bin/hello-world-client` --
+    * run the client
+    * check the log message, confirming the response from the server!!!
+
+
+
+### Via Maven
+* From grpc-java/examples directory
+  * `$ mvn verify`
+  * `$ mvn exec:java -Dexec.mainClass=io.grpc.examples.*.*Server` -- _Example:_ `$ mvn exec:java -Dexec.mainClass=io.grpc.examples.helloworld.HelloWorldServer`
+    * run the server
+  * (In another terminal) `$ mvn exec:java -Dexec.mainClass=io.grpc.examples.*.*Client` -- _Example:_ `$ mvn exec:java -Dexec.mainClass=io.grpc.examples.helloworld.HelloWorldClient`
+    * run the client
+    * check the log message, confirming the response from the server!!!
+
+
+### Via Bazel
+* [Install bazel](https://bazel.build/install)
+* From grpc-java/examples directory
+  * `$ bazel build :*-server :*-client` -- _Example:_ `$ bazel build :hello-world-server :hello-world-client`
+    * creates 'bazel-bin/', 'bazel-examples/', 'bazel-out/' 
+  * `$ bazel-bin/*-server`  _Example:_ `$ bazel-bin/hello-world-server`
+    * run the server
+  * (In another terminal) `$ bazel-bin/*-client` -- _Example:_ `$ bazel-bin/hello-world-client`
+    * run the client
+    * check the log message, confirming the response from the server!!!
+
 
 ## Basic examples
 
@@ -124,8 +160,8 @@ before trying out the examples.
 
   The [health service example](src/main/java/io/grpc/examples/healthservice)
   provides a HelloWorld gRPC server that doesn't like short names along with a
-  health service.  It also provides a client application which makes HelloWorld 
-  calls and checks the health status.  
+  health service.  It also provides a client application which makes HelloWorld
+  calls and checks the health status.
 
   The client application also shows how the round robin load balancer can
   utilize the health status to avoid making calls to a service that is
@@ -134,62 +170,6 @@ before trying out the examples.
 
 
 - [Keep Alive](src/main/java/io/grpc/examples/keepalive)
-
-### <a name="to-build-the-examples"></a> To build the examples
-
-1. **[Install gRPC Java library SNAPSHOT locally, including code generation plugin](../COMPILING.md) (Only need this step for non-released versions, e.g. master HEAD).**
-
-2. From grpc-java/examples directory:
-```
-$ ./gradlew installDist
-```
-
-This creates the scripts `hello-world-server`, `hello-world-client`,
-`route-guide-server`, `route-guide-client`, etc. in the
-`build/install/examples/bin/` directory that run the examples. Each
-example requires the server to be running before starting the client.
-
-For example, to try the hello world example first run:
-
-```
-$ ./build/install/examples/bin/hello-world-server
-```
-
-And in a different terminal window run:
-
-```
-$ ./build/install/examples/bin/hello-world-client
-```
-
-That's it!
-
-For more information, refer to gRPC Java's [README](../README.md) and
-[tutorial](https://grpc.io/docs/languages/java/basics).
-
-### Maven
-
-If you prefer to use Maven:
-1. **[Install gRPC Java library SNAPSHOT locally, including code generation plugin](../COMPILING.md) (Only need this step for non-released versions, e.g. master HEAD).**
-
-2. Run in this directory:
-```
-$ mvn verify
-$ # Run the server
-$ mvn exec:java -Dexec.mainClass=io.grpc.examples.helloworld.HelloWorldServer
-$ # In another terminal run the client
-$ mvn exec:java -Dexec.mainClass=io.grpc.examples.helloworld.HelloWorldClient
-```
-
-### Bazel
-
-If you prefer to use Bazel:
-```
-$ bazel build :hello-world-server :hello-world-client
-$ # Run the server
-$ bazel-bin/hello-world-server
-$ # In another terminal run the client
-$ bazel-bin/hello-world-client
-```
 
 ## Other examples
 

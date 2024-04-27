@@ -63,7 +63,8 @@ public class HelloWorldClient {
   public static void main(String[] args) throws Exception {
     String user = "world";
     // Access a service running on the local machine on port 50051
-    String target = "localhost:50051";
+    //String target = "localhost:50051";    -- changed in the server --
+    String target = "localhost:50052";
     // Allow passing in the user and target strings as command line arguments
     if (args.length > 0) {
       if ("--help".equals(args[0])) {
