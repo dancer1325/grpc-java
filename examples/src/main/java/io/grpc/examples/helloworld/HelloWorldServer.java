@@ -82,6 +82,7 @@ public class HelloWorldServer {
 
   static class GreeterImpl extends GreeterGrpc.GreeterImplBase {
 
+    // Implement declared service's methods
     @Override
     public void sayHello(HelloRequest req, StreamObserver<HelloReply> responseObserver) {
       HelloReply reply = HelloReply.newBuilder().setMessage("Hello " + req.getName()).build();

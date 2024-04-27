@@ -31,6 +31,7 @@ import java.util.logging.Logger;
 public class HelloWorldClient {
   private static final Logger logger = Logger.getLogger(HelloWorldClient.class.getName());
 
+  // stub         which implements the declared service's methods
   private final GreeterGrpc.GreeterBlockingStub blockingStub;
 
   /** Construct client for accessing HelloWorld server using the existing channel. */
@@ -48,7 +49,7 @@ public class HelloWorldClient {
     HelloRequest request = HelloRequest.newBuilder().setName(name).build();
     HelloReply response;
     try {
-      response = blockingStub.sayHello(request);
+      response = blockingStub.sayHello(request);    // stub implement one of the declared service's methods
     } catch (StatusRuntimeException e) {
       logger.log(Level.WARNING, "RPC failed: {0}", e.getStatus());
       return;
@@ -57,7 +58,7 @@ public class HelloWorldClient {
 
     try {
       // Call the new method on the server.
-      response = blockingStub.sayHelloAgain(request);
+      response = blockingStub.sayHelloAgain(request);   // stub implement one of the declared service's methods
     } catch (StatusRuntimeException e) {
       // Log a warning if the RPC fails.
       logger.log(Level.WARNING, "RPC failed: {0}", e.getStatus());
