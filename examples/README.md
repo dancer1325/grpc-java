@@ -230,3 +230,10 @@ shutdown boilerplate for you.
 ## Even more examples
 
 A wide variety of third-party examples can be found [here](https://github.com/saturnism/grpc-java-by-example).
+
+## Protocol Buffers
+* Check '/src/main/proto' &
+  * add `SayHelloAgain`
+  * adjust in the corresponding gRPC server and client
+* Run again -- using on the previous ways indicated --
+* Check the new log messages are displayed!!

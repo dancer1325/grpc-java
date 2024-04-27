@@ -88,5 +88,18 @@ public class HelloWorldServer {
       responseObserver.onNext(reply);
       responseObserver.onCompleted();
     }
+
+    // Introduced after adjusting the gRPC service defined
+    @Override
+    public void sayHelloAgain(HelloRequest req, StreamObserver<HelloReply> responseObserver) {
+      // Generate another greeting message for the new method.
+      HelloReply reply = HelloReply.newBuilder().setMessage("Hello again " + req.getName()).build();
+
+      // Send the reply back to the client.
+      responseObserver.onNext(reply);
+
+      // Indicate that no further messages will be sent to the client.
+      responseObserver.onCompleted();
+    }
   }
 }

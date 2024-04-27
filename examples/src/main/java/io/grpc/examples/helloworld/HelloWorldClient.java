@@ -54,6 +54,18 @@ public class HelloWorldClient {
       return;
     }
     logger.info("Greeting: " + response.getMessage());
+
+    try {
+      // Call the new method on the server.
+      response = blockingStub.sayHelloAgain(request);
+    } catch (StatusRuntimeException e) {
+      // Log a warning if the RPC fails.
+      logger.log(Level.WARNING, "RPC failed: {0}", e.getStatus());
+      return;
+    }
+
+    // Log the response from the new method.
+    logger.info("Greeting: " + response.getMessage());
   }
 
   /**
