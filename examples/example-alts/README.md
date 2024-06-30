@@ -20,6 +20,9 @@ gRPC ALTS Example
     ```
     $ ../gradlew installDist
     ```
+    * Problems:
+      * Problem1: " Could not find io.grpc:grpc-alts:1.64.0-SNAPSHOT"
+        * Solution: Adjust to 'io.grpc:grpc-alts:1.64.0'
   * It creates the scripts `hello-world-alts-server`, `hello-world-alts-client` | `build/install/example-atls/bin/` -- directory to run it --
 
 ### How to run in a GCP environment
@@ -36,7 +39,7 @@ gRPC ALTS Example
 
 ### How to test in a non-GCP environment?
 * Deploy a [handshaker service](https://github.com/grpc/grpc/blob/7e367da22a137e2e7caeae8342c239a91434ba50/src/proto/grpc/gcp/handshaker.proto#L224-L234) 
-* Configure both the
+* Configure both the -- TODO: Try --
   * [ALTS client](https://github.com/grpc/grpc-java/blob/master/alts/src/main/java/io/grpc/alts/AltsChannelBuilder.java#L63-L76)
   * [ALTS server](https://github.com/grpc/grpc-java/blob/master/alts/src/main/java/io/grpc/alts/AltsServerCredentials.java#L55-L72)
   * [Example](https://github.com/grpc/grpc-java/blob/master/interop-testing/src/test/java/io/grpc/testing/integration/AltsHandshakerTest.java#L45)
